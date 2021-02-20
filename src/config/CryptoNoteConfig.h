@@ -20,7 +20,7 @@ namespace CryptoNote
 {
     namespace parameters
     {
-        const uint64_t DIFFICULTY_TARGET = 30; // seconds
+        const uint64_t DIFFICULTY_TARGET = 120; // 2 Minutes Blocktime
 
         const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER = 500000000;
 
@@ -28,9 +28,9 @@ namespace CryptoNote
 
         const size_t CRYPTONOTE_MAX_TX_SIZE = 1000000000;
 
-        const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 3914525;
+        const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0x1b7a97;
 
-        const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW = 40;
+        const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW = 15; // Release reward after 30minutes
 
         const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT = 60 * 60 * 2;
 
@@ -43,27 +43,29 @@ namespace CryptoNote
         const size_t BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V3 = 11;
 
         // MONEY_SUPPLY - total number coins to be generated
-        const uint64_t MONEY_SUPPLY = UINT64_C(100000000000000);
+        const uint64_t MONEY_SUPPLY = UINT64_C(10000000000000000); // 100 Trillion MAX Supply
 
-        const uint32_t ZAWY_DIFFICULTY_BLOCK_INDEX = 187000;
+        const uint32_t ZAWY_DIFFICULTY_BLOCK_INDEX = 0;
 
         const size_t ZAWY_DIFFICULTY_V2 = 0;
 
         const uint8_t ZAWY_DIFFICULTY_DIFFICULTY_BLOCK_VERSION = 3;
 
-        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX = 620000;
+        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX = 1;
 
-        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V2 = 700000;
+        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V2 = 2;
 
-        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3 = 800000;
+        const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3 = 3;
 
-        const unsigned EMISSION_SPEED_FACTOR = 25;
+        const unsigned EMISSION_SPEED_FACTOR = 26;
 
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
-        const char GENESIS_COINBASE_TX_HEX[] =
-            "010a01ff000188f3b501029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210142694232c5b04151"
-            "d9e4c27d31ec7a68ea568b19488cfcb422659a07a0e44dd5";
+        const char GENESIS_COINBASE_TX_HEX[] = "010f01ff00019bf98647029b2e4c0281c0b02e7c"
+                    "53291a94d1d0cbff8883f8024f5142ee494ffbbd0880718401016e8704502ebad00db5126d0370d9"
+                    "5dde1b841acb923d27e2e4a8ff966b0040a904000000000000000000000000000000000000000000"
+                    "00000000000000000000000500000000000000000000000000000000000000000000000000000000"
+                    "00000000062945098357d4c88e7bc3e6f193902599ca4a6d98f197b7fd5394025dc9f10406";
 
         static_assert(
             sizeof(GENESIS_COINBASE_TX_HEX) / sizeof(*GENESIS_COINBASE_TX_HEX) != 1,
@@ -89,7 +91,7 @@ namespace CryptoNote
         const size_t CRYPTONOTE_DISPLAY_DECIMAL_POINT = 2;
 
         /* TODO: Remove? */
-        const uint64_t MINIMUM_FEE = UINT64_C(10);
+        const uint64_t MINIMUM_FEE = UINT64_C(100);
 
         /* Fee per byte is rounded up in chunks. This helps makes estimates
          * more accurate. It's suggested to make this a power of two, to relate
@@ -140,7 +142,7 @@ namespace CryptoNote
 
         const uint64_t DEFAULT_DUST_THRESHOLD_V2 = UINT64_C(0);
 
-        const uint32_t DUST_THRESHOLD_V2_HEIGHT = MIXIN_LIMITS_V2_HEIGHT;
+        const uint32_t DUST_THRESHOLD_V2_HEIGHT = 0;
 
         const uint32_t FUSION_DUST_THRESHOLD_HEIGHT_V2 = 800000;
 
@@ -240,7 +242,7 @@ namespace CryptoNote
 
         const uint32_t UPGRADE_HEIGHT_V3 = 2;
 
-        const uint32_t UPGRADE_HEIGHT_V4 = 350000; // Upgrade height for CN-Lite Variant 1 switch.
+        const uint32_t UPGRADE_HEIGHT_V4 = 3; // Upgrade height for CN-Lite Variant 1 switch.
 
         const uint32_t UPGRADE_HEIGHT_V5 = 1200000; // Upgrade height for CN-Turtle Variant 2 switch.
 
@@ -317,7 +319,7 @@ namespace CryptoNote
         const char MINER_CONFIG_FILE_NAME[] = "miner_conf.json";
     } // namespace parameters
 
-    const char CRYPTONOTE_NAME[] = "TurtleCoin";
+    const char CRYPTONOTE_NAME[] = "SeroCoin";
 
     const uint8_t TRANSACTION_VERSION_1 = 1;
 
@@ -405,14 +407,9 @@ namespace CryptoNote
     const std::string LICENSE_URL = "https://github.com/turtlecoin/turtlecoin/blob/master/LICENSE";
 
     const static boost::uuids::uuid CRYPTONOTE_NETWORK = {
-        {0xb5, 0x0c, 0x4a, 0x6c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0xf9, 0x91, 0xa4, 0xb6, 0xc1, 0x43, 0xe9}};
+        {0x53, 0x65, 0x72, 0x6f, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x53, 0x79, 0x43, 0x72, 0x79, 0x38, 0x32}};
 
     const char *const SEED_NODES[] = {
-        "145.239.88.119:11897", // cision
-        "165.227.252.132:11897", // iburnmycd
-        "148.251.178.238:11897", // hv
-        "45.32.138.7:11897", // extra
-        "46.214.70.196:11897", // CuveeRO
-        "94.113.119.122:11897" // CuveeCZ
+        "91.200.102.206:11897", // cision
     };
 } // namespace CryptoNote
